@@ -35,23 +35,18 @@ function playGame() {
         }
     }
 
-    while(round < 5) {
-        if (humanScore <= 2 && computerScore <= 2) {
-            const computerChoice = getComputerChoice();
-            const humanChoice = getHumanChoice();
-            if (humanChoice === computerChoice) {
-                console.log(`It's a tie! ${humanChoice} vs. ${computerChoice}.\nRepeating the current round...`);
-            } else {
-                playRound(humanChoice, computerChoice);
-                console.log(`${message}\nHuman score: ${humanScore}\nComputer score: ${computerScore}`);
-                round += 1;
-            }
+    while(humanScore < 5 && computerScore < 5) {
+        const computerChoice = getComputerChoice();
+        const humanChoice = getHumanChoice();
+        if (humanChoice === computerChoice) {
+            console.log(`It's a tie! ${humanChoice} vs. ${computerChoice}.\nRepeating the current round...`);
         } else {
-            break;
+            playRound(humanChoice, computerChoice);
+            console.log(`${message}\nHuman score: ${humanScore}\nComputer score: ${computerScore}`);
         }
     }
 
-    finalMessage = humanScore > 2 ?
+    finalMessage = humanScore > computerScore ?
         `Congratulations, you have won the game! The final score was:\nHuman score: ${humanScore}\nComputer score: ${computerScore}` :
         `Unfortunately you have lost the game :( The final score was:\nHuman score: ${humanScore}\nComputer score: ${computerScore}`
     console.log(finalMessage);
