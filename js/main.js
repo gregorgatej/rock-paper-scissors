@@ -6,6 +6,8 @@ const rockBtn = document.querySelector(".rockBtn");
 const paperBtn = document.querySelector(".paperBtn");
 const scissorsBtn = document.querySelector(".scissorsBtn");
 
+const resultsDiv = document.querySelector(".results");
+
 rockBtn.addEventListener("click", () => {
     computerChoice = getComputerChoice();
     playRound("rock", computerChoice);
@@ -43,11 +45,11 @@ function playRound(humanChoice, computerChoice) {
             || humanChoice === "scissors" && computerChoice === "paper"
         ) {
             humanScore += 1;
-            message = `Ỳou win this round! ${humanChoice} beats ${computerChoice}! Current score:
+            message = `Ỳou win this round! ${humanChoice} beats ${computerChoice}!\nCurrent score:
                            \nHuman score: ${humanScore}\nComputer score: ${computerScore}`;
         } else {
             computerScore += 1;
-            message = `The computer wins this round... ${computerChoice} beats ${humanChoice}. Current score:
+            message = `The computer wins this round... ${computerChoice} beats ${humanChoice}.\nCurrent score:
                            \nHuman score: ${humanScore}\nComputer score: ${computerScore}`;
         }
     }
@@ -58,5 +60,6 @@ function playRound(humanChoice, computerChoice) {
             `Unfortunately you have lost this round (${computerChoice} beats ${humanChoice}) and the game :( The final score was:
              \nHuman score: ${humanScore}\nComputer score: ${computerScore}`
     }
-    console.log(message);
+    resultsDiv.innerHTML = `<pre>${message}</pre>`;
+    // console.log(message);
 }
